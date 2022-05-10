@@ -64,7 +64,7 @@ def draw_grid(win, rows, edge):  # draw grid from 0 to size of edge in each gap 
             pygame.draw.line(win, GREY, (j * gap, 0), (j * gap, edge))
 
 
-def draw(win, grid, rows, edge):  # fill the grid with black
+def draw(win, grid, rows, edge):  # fill the grid with White
     win.fill(WHITE)
 
     for row in grid:
@@ -86,10 +86,10 @@ def get_clicked_pos(pos, rows, edge):  # set each cube in the grid as a position
 
 
 def get_board_from_grid(grid):  # get the board from the grid
-    board = []
+    board = []  # list
     for row in grid:
         board_row = []
-        for node in row:
+        for node in row:  # for each node use symbol as determination
             if node.is_empty():
                 board_row.append('.')
             elif node.is_Player0():
@@ -100,7 +100,7 @@ def get_board_from_grid(grid):  # get the board from the grid
     return board
 
 
-def get_copy_board(board):
+def get_copy_board(board):  # copy the board for the literation
     new_board = []
     for row in board:
         new_row = []
@@ -110,13 +110,13 @@ def get_copy_board(board):
     return new_board
 
 
-def get_next_player(player):
+def get_next_player(player):  # moves 1 by 1
     if player == 'X':
         return 'O'
     return "X"
 
 
-def get_valid_move_board(board, player):
+def get_valid_move_board(board, player):  # check the valid place to place the move
     res = []
     board_res = []
     for row_index in range(len(board)):
@@ -139,7 +139,7 @@ def get_board_str(board):
 def make_mc_move(grid):  # make a move using mc method
     board = get_board_from_grid(grid) # get board according to grid
     res_score = {}
-    for iteration in range(100):
+    for iteration in range(10000):
         # iteration
         player = 'X'
         first_move = None # get first move
